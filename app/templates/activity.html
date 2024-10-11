@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity</title>
+
+    <style>
+         body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #065d83ee;
+      margin: 0;
+      margin-top: 250px;
+
+    }
+    .form-container {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-description {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .option-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 2px solid transparent;
+      border-radius: 50px;
+      font-size: 16px;
+      background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+      background-origin: border-box;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option-button:hover {
+      background: white;
+      color: #333;
+      border-color: #7F00FF;
+    }
+
+    .option-button:focus {
+      outline: none;
+    }
+
+    .continue-button {
+      background-color: #4a90e2;
+      color: white;
+      border-radius: 50px;
+      padding: 15px;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .continue-button:hover {
+      background-color: #357ABD;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .form-description {
+      text-align: center;
+      font-size: 16px;
+      color: #666666;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333333;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    select, input[type="number"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    select:focus, input[type="number"]:focus, textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .option-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .option-button:hover {
+      background-color: #0056b3;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    textarea {
+      resize: none;
+    }
+    </style>
+</head>
+    
+<body>
+  <div class="form-container">
+    <h2>What activities did you do today?</h2>
+    <p class="form-description">Select the mindfulness activities you did today</p>
+
+    <form action="/activity" method="POST">
+      <!-- Activity Selection -->
+      <label for="activities">Select your activities:</label>
+      <select id="activities" name="activities" multiple>
+        <option value="Meditation">Meditation</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Walking">Walking</option>
+        <option value="Breathing Exercises">Breathing Exercises</option>
+        <option value="Reading">Reading</option>
+      </select>
+
+      <!-- Activity Duration -->
+      <label for="duration">Duration of activity (in minutes):</label>
+      <input type="number" id="duration" name="duration" min="5" max="180" required>
+
+      <!-- Effectiveness of Activity -->
+      <label for="effectiveness">How effective was the activity?</label>
+      <select id="effectiveness" name="effectiveness">
+        <option value="Very Effective">Very Effective</option>
+        <option value="Somewhat Effective">Somewhat Effective</option>
+        <option value="Not Effective">Not Effective</option>
+      </select>
+
+      <!-- Mood Selection -->
+      <p>Select your mood after the activity:</p>
+      <!-- Hidden input to store selected mood -->
+      <input type="hidden" id="selected-mood" name="mood" value="">
+      
+      <button type="button" class="option-button" onclick="setMood('Happy')">Happy</button>
+      <button type="button" class="option-button" onclick="setMood('Sad')">Sad</button>
+      <button type="button" class="option-button" onclick="setMood('Stressed')">Stressed</button>
+      <button type="button" class="option-button" onclick="setMood('Calm')">Calm</button>
+      <button type="button" class="option-button" onclick="setMood('Anxious')">Anxious</button>
+
+      <!-- Additional Notes -->
+      <label for="notes">Additional notes (optional):</label>
+      <textarea id="notes" name="notes" rows="3"></textarea>
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- JavaScript to handle mood selection -->
+  <script>
+    function setMood(mood) {
+      // Set the value of the hidden input to the selected mood
+      document.getElementById('selected-mood').value = mood;
+      
+      // Optionally, give feedback to the user by changing the button style or showing a message
+      alert("Mood set to: " + mood);
+    }
+  </script>
+</body>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    <title>Document</title>
+</head>
+<style>
+ .cd1{
+    background-image: url(../static/images/person-suffering-from-anxiety.jpg);
+ }
+ .subhead2 {
+    color: #00aaff;
+    
+ }
+ .breathing-exercise  {
+    text-align: center;
+    padding: 50px;
+    background-color: #0ec2e6;
+}
+.breathing-exercise h2,h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: xx-large;   
+   color: #0d47a1;
+}
+
+.breathing-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #8fcafe, #5d7be3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 24px;
+    color: #333;
+    margin: 20px auto;
+
+}
+.audio-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#breathing-text {
+    font-size: 24px;
+    color: #333;
+}
+
+
+.progress-circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(135, 206, 235, 0.4);
+    animation: breathe 8s infinite;
+}
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+
+
+.tools-section {
+    padding: 50px;
+    background-color: #17a5d0;
+    text-align: center;
+}
+
+.tools-section h2 {
+    font-size:xx-large;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.tab {
+    padding: 15px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size:medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.tab:hover {
+    background-color: #024495;
+}
+.tab.active {
+    background-color: #0d47a1;
+    color: white;
+}
+
+.tools-content .tool {
+    display: inline-block;
+    text-align: center;
+}
+
+.tool img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.tool h3 {
+    margin: 15px 0;
+}
+/* Pricing Section */
+.pricing-section {
+    padding: 50px;
+    text-align: center;
+    
+}
+.pricing-section h2{
+    font-size:x-large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.pricing-options {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.price, .trial {
+    padding: 15px 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+
+.cta-button {
+    background-color: #0d47a1;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+/*faq/support*/
+
+
+
+.faq-section h2 {
+  text-align: center;
+  color: #2e4a7b;
+  margin-bottom: 20px;
+  font-size:xx-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.faq-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: rgb(214, 233, 237);
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  padding: 15px;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  color: #2e4a7b;
+  border-bottom: 1px solid #ddd;
+}
+
+.faq-question span {
+  float: right;
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f1f1f1;
+}
+
+.faq-question:focus, .faq-question:hover {
+  background-color: #f1f1f1;
+}
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+</style>
+    <body>
+        <nav class="nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="{{ url_for('routes.home')}}">EASEMIND</a>
+                </div>
+            
+                <div id="mainListDiv" class="main_list">
+                    <ul class="navlinks">
+                        <li><a href="">Home</a></li>
+                        <li><a href="{{url_for('routes.about')}}">About</a></li>
+                        <li><a href="{{url_for('routes.blogs')}}">Blogs</a></li>
+                        {% if current_user.is_authenticated %}
+                        {% else %}
+                        <li><a href="{{url_for('routes.signup')}}">Sign Up</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('routes.dashboard')}}">Dashboard</a></li>
+    
+                    </ul>
+                </div>
+                <span class="navTrigger">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </span>
+            </div>
+        </nav>
+    </body>
+    <section class="cd1">
+        <div class="container">
+            <h1 class="subhead1">Anxiety and stress relief whenever you need it
+
+            </h1>
+            <h2 class="subhead2">Learn how to calm anxiety and find the tools for in-the-moment stress relief. Our clinical experts and meditation teachers are here with a wide range of stress relief programs, meditations for anxiety, and guided content to help you soothe anxiety and feel better.
+
+            </h2>
+            <button id="cta-button" onclick="">Relieve your stress for free</button>   
+         </div>
+    </section>
+
+    <section class="breathing-exercise">
+        <h2>Try a quick breathing exercise to ease your stress.</h2>
+        <div class="breathing-container">
+            <div class="circle">
+                <div class="progress-circle"></div>
+                <div id="breathing-text">Breathe In</div>
+            </div>
+            <button class="audio-button"onclick="playAudio()">
+                <img src="../static/icons/audio.png" width="50px" height="50px" alt="Play Audio">
+            </button>
+        </div>
+    </section>
+    <audio id="breathing-audio">
+        <source src="{{ url_for('static', filename='audios/calm-soul-meditation-247330.mp3')}}" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+    <section class="tools-section">
+        <h2>Stress relief and anxiety tools for real life.</h2>
+        <div class="tabs">
+            <button class="tab active"pnclick="showContent('practical-tools')">Practical Tools</button>
+            <button class="tab"onclick="showContent('quick-relief')">Quick Relief</button>
+            <button class="tab"onclick="showContent('grounding-exercises')">Grounding Exercises</button>
+            <button class="tab"onclick="showContent('breath-work')">Breath Work</button>
+            <button class="tab"onclick="showContent('courses')">Courses</button>
+        </div>
+            <div class="tools-content">
+                <div id="practical-tools" class="tab-content active">
+                    <img src="../static/images/dreamy-rainbow-countryside.jpg"height="300px"width="300px" alt="Expert">
+                    <h2>Get in-the-moment relief
+                        Our clinical experts and mindfulness teachers are here to support you, with a wide range of programs for work stress, acute anxiety, negative thoughts, and more.
+                    </h2>
+                    <h3>Overcome Stress and Anxiety</h3>
+                    <p>Hosted by Dr. Julie Smith</p>
+                    <audio controls >
+                        <source src="{{ url_for('static', filename='audios/audio1.mp3')}}" type="audio/mp3" >
+                    </audio>
+                   
+                 
+        </div>
+        <div id="quick-relief" class="tab-content">
+            <img src="data:image/jpeg;base64,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" alt="Expert">
+            <h3>Feel better in just a few minutes
+                Sometimes you just need a quick dose of Calm. Choose from a range of tools to manage everyday stressors, including breathing exercises and mindfulness practices.</h3>
+            <p>Relax Your Mind
+                Narrated by Jeff Warren</p>
+            <audio controls>
+                <source src="{{ url_for('static', filename='audios/Concentration 101.mp3')}}" type="audio/mp3">
+            </audio>
+        </div>
+    </div>
+    <div id="grounding-exercises" class="tab-content">
+        <img src="expert-image.jpg" alt="Expert">
+        <h3>Overcome Stress and Anxiety</h3>
+        <p>Hosted by Dr. Julie Smith</p>
+        <audio controls >
+            <source src="" type="audio/mp3">
+        </audio>
+    </div>
+</div>
+    <div id="breath-work" class="tab-content">
+        <h3>Connect with the calming power of the breath
+            Your breath can support you, and our meditation teachers will show you how. Learn evidence-based breathwork techniques to soften anxiety, release tension, and sharpen focus.
+            
+            </h3>
+        <p>Use breath work techniques to manage stress and anxiety.</p>
+        <audio controls>
+            <source src="" type="audio/mp3">
+        </audio>
+    </div>
+    <div id="courses" class="tab-content">
+        <h3>Courses</h3>
+        <p>Enroll in mindfulness and mental wellness courses to help you grow.</p>
+        <audio controls>
+            <source src="" type="audio/mp3">
+        </audio>
+    </div>
+</div>
+    </section>
+<section class="pricing-section">
+    <h2>Start your free trial of EASEMIND Premium.</h2>
+    <div class="pricing-options">
+        <div class="price">
+            <p>Yearly</p>
+            <p>$30/yr</p>
+        </div>
+        <div class="trial">
+            <p>7-Day Free Trial</p>
+            <p>Then $2.5/mo billed annually.</p>
+        </div>
+    </div>
+    <button class="cta-button">Continue</button>
+</section>
+
+<body>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">How do I know if I have anxiety? <span>&#9662;</span></button>
+          <div class="faq-answer">
+            <p>Common symptoms of anxiety include excessive worry, restlessness, and trouble concentrating.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What is stress?
+                <span>&#9662;</span></button>
+            <div class="faq-answer">
+              <p>Stress is a very common and human experience. It can be defined as a natural response to a perceived threat, demand, or challenge. It is a physiological and psychological reaction that prepares the body and mind to cope with the situation at hand. While stress is a normal part of life, excessive or chronic stress can be overwhelming and impair your overall well-being.
+
+                </p>
+            </div>
+          </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I get rid of stress? <span>&#9662;</span></button>
+          <div class="faq-answer">
+            <p>Stress can be managed with techniques like mindfulness, deep breathing, and regular exercise.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How does stress affect the body? <span>&#9662;</span></button>
+          <div class="faq-answer">
+            <p>Stress can lead to physical symptoms such as headaches, muscle tension, and high blood pressure.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What causes social anxiety? <span>&#9662;</span></button>
+          <div class="faq-answer">
+            <p>Social anxiety is often caused by a combination of genetic and environmental factors.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What's the best meditation for anxiety?
+                <span>&#9662;</span></button>
+            <div class="faq-answer">
+              <p>There are a variety of factors that go into answering this question. A good starting point is to reflect on what might be causing your anxiety. If your symptoms are physical, carving out 7 minutes of mindful movement could help ease any tightness or jitters living in the body. If your symptoms are more emotional, sitting in stillness as a soundscape plays can help soothe the mind. Reminding yourself to remain gentle and compassionate can also help when your mind or body tries to initially resist these practices, especially if you're just starting out.</p>
+            </div>
+          </div>
+        <!-- Add more FAQ items as needed -->
+      </div>
+    </section>
+  
+  </body>
+  </html>
+            
+        
+
+
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <title>Footer Design</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        </head>
+        <body>
+        
+          <footer class="footer">
+               <div class="container">
+                   <div class="row">
+                       <div class="footer-col">
+                           <h4>company</h4>
+                           <ul>
+                               <li><a href="#">about us</a></li>
+                               <li><a href="#">our services</a></li>
+                               <li><a href="#">privacy policy</a></li>
+                               <li><a href="#">affiliate program</a></li>
+                           </ul>
+                       </div>
+                       <div class="footer-col">
+                           <h4>get help</h4>
+                           <ul>
+                               <li><a href="#">FAQ</a></li>
+                               <li><a href="#">shipping</a></li>
+                               <li><a href="#">returns</a></li>
+                               <li><a href="#">order status</a></li>
+                               <li><a href="#">payment options</a></li>
+                           </ul>
+                       </div>
+                       <div class="footer-col">
+                           <h4>online shop</h4>
+                           <ul>
+                               <li><a href="#">watch</a></li>
+                               <li><a href="#">bag</a></li>
+                               <li><a href="#">shoes</a></li>
+                               <li><a href="#">dress</a></li>
+                           </ul>
+                       </div>
+                       <div class="footer-col">
+                           <h4>follow us</h4>
+                           <div class="social-links">
+                               <a href="#"><i class="fab fa-facebook-f"></i></a>
+                               <a href="#"><i class="fab fa-twitter"></i></a>
+                               <a href="#"><i class="fab fa-instagram"></i></a>
+                               <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+          </footer>
+        
+    
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/scripts.js"></script>
+        
+        <!-- Function used to shrink nav bar removing paddings and adding black background -->
+        <script>
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('.nav').addClass('affix');
+                    console.log("OK");
+                } else {
+                    $('.nav').removeClass('affix');
+                }
+            });
+        </script>
+
+
+      <script src="{{ url_for('static', filename='temp.js') }}">
+  
+      </script>
+</body>
+</html>

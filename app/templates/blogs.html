@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ url_for('routes.home')}}">EASEMIND</a>
+            </div>
+        
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="{{ url_for('routes.home')}}">Home</a></li>
+                    <li><a href="{{url_for('routes.about')}}">About</a></li>
+                    <li><a href="{{url_for('routes.blogs')}}">Blogs</a></li>
+                    <li><a href="{{url_for('routes.signup')}}">Sign Up</a></li>
+                    <li><a href="{{ url_for('routes.dashboard')}}">Dashboard</a></li>
+
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+    <section class="cd12">
+      <div class="container2">
+          <h1 class="subhead12">Mental health is hard. Getting support doesn't have to be. 
+
+          </h1>
+          <h2 class="subhead22">Welcome to the EASEMIND Blog.Our clinically-backed articles and resources are here to help you stress less, sleep more, live mindfully, and feel better, wherever you are on your mental health journey.
+
+          </h2>  
+       </div>
+  </section>
+  <body>
+   <section class="section1">
+    <div class="tags">
+     <button class="tag active" onclick="showContent('Stress &amp; Anxiety')">
+    Motivation &amp; Mindfulness
+     </button>
+     <button>
+      Stress &amp; Anxiety
+     </button>
+     <button>
+      Sleep
+     </button>
+     <button>
+      Mental Health
+     </button>
+     <button>
+      Personal Growth
+     </button>
+    </div>
+    <div class="content">
+     <h2>
+      New &amp; Featured Articles
+     </h2>
+     <div class="article">
+      <img alt="Image of Calm app on mobile devices" height="150" src="../static/images/3d-render-female-yoga-positon-sunset-landscape.jpg" width="200"/>
+      <div class="text">
+       <h3>
+        You asked, we listened: Introducing Calmplation summer 2024
+       </h3>
+       <p>
+        A collection of guided meditations to help you calm your mind and improve your life.
+       </p>
+      </div>
+     </div>
+     <div class="article">
+      <img alt="Person looking stressed at work" height="150" src="../static/images/person-feeling-anxiety-induced-by-documents-work.jpg" width="200"/>
+      <div class="text">
+       <h3>
+        Struggling with burnout after vacation? 10 recovery tips
+       </h3>
+       <p>
+        Discover why you might feel burned out after a vacation and 10 necessary tips to help you transition back to work life.
+       </p>
+      </div>
+     </div>
+     <div class="article">
+      <img alt="People discussing election results" height="150" src="../static/images/stop-my-head-blow-out-tired-brunette-young-caucasian-woman-keeps-hands-temples-closes-eyes.jpg" width="200"/>
+      <div class="text">
+       <h3>
+        Dealing with election anxiety? 8 tips to help you manage it
+       </h3>
+       <p>
+        Explore why elections affect us, the common causes of stress, and effective meditation or relaxation tips to help you manage your stress and maintain calm.
+       </p>
+      </div>
+     </div>
+     <div class="section">
+      <h3>
+       Meditation &amp; Mindfulness
+       <a href="#">
+        View All
+       </a>
+      </h3>
+      <div class="cards">
+       <div class="card">
+        <a href="https://blog.cult.fit/articles/how-to-do-om-chanting-meditation">
+        <img alt="Person meditating outdoors" height="150" src="../static/images/portrait-person-practicing-yoga-home.jpg" width="200"/>
+        </a>
+        <div class="text">
+         <h4>
+          What is Om meditation? Plus, a step-by-step guide to practice
+         </h4>
+         <p>
+          Aug 25, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person preparing mindful meal" height="150" src="../static/images/mindfull cooking.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to practice mindful cooking
+         </h4>
+         <p>
+          Apr 18, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person meditating by the sea" height="150" src="../static/images/3d-rendering-buddha-statue-suset.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          40 best quotes about meditation and mindfulness
+         </h4>
+         <p>
+          Aug 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person practicing abundance meditation" height="150" src="../static/images/wellness-practices-self-care-world-health-day.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What is abundance meditation? 10 examples and how to practice it
+         </h4>
+         <p>
+          Dec 12, 2024
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="section">
+      <h3>
+       Stress &amp; Anxiety
+       <a href="#">
+        View All
+       </a>
+      </h3>
+      <div class="cards">
+       <div class="card">
+        <img alt="Person stressed about wedding planning" height="150" src="../static/images/ritual-with-coconut-leaves-traditional-hindu-wedding-ceremony.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          Is wedding planning stressing you out? Here's how to manage
+         </h4>
+         <p>
+          Sep 10, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person feeling empty-headed" height="150" src="../static/images/person-suffering-from-anxiety.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          Why do I feel empty-headed? 7 reasons and what to do about it
+         </h4>
+         <p>
+          Aug 25, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person dealing with marriage anxiety" height="150" src="../static/images/ritual-with-coconut-leaves-traditional-hindu-wedding-ceremony.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          Cold feet? 10 tips for how to deal with marriage anxiety
+         </h4>
+         <p>
+          Aug 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person feeling burnout after vacation" height="150" src="../static/images/exhausted-tired-executive-manager-suffering-from-sleepiness.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          Struggling with burnout after vacation? 10 recovery tips
+         </h4>
+         <p>
+          Jun 27, 2024
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="section">
+      <h3>
+       Sleep
+       <a href="#">
+        View All
+       </a>
+      </h3>
+      <div class="cards">
+       <div class="card">
+        <img alt="Best sleep environment" height="150" src="../static/images/woman-sleeping.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          6 tips you need to create the best sleep environment
+         </h4>
+         <p>
+          Aug 25, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person dreaming" height="150" src="../static/images/dream.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to dream more: 6 tips to increase how you dream
+         </h4>
+         <p>
+          Aug 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person sleeping in a cave" height="150" src="../static/images/SL.123119.26540.04.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What is brown noise (and is it the best for sleep)?
+         </h4>
+         <p>
+          Aug 10, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person experiencing sleep regression" height="150" src="../static/images/sleep regression.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What is sleep regression? Plus, when it happens and how to deal
+         </h4>
+         <p>
+          Aug 05, 2024
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="section">
+      <h3>
+       Mental Health
+       <a href="#">
+        View All
+       </a>
+      </h3>
+      <div class="cards">
+       <div class="card">
+        <img alt="Person gardening" height="150" src="../static/images/high-angle-people-taking-care-plants.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What are the benefits of gardening on mental health?
+         </h4>
+         <p>
+          Sep 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person by the sea" height="150" src="../static/images/mdma.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What is MDMA-assisted psychotherapy and how does it work?
+         </h4>
+         <p>
+          Jul 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person talking to themselves" height="150" src="../static/images/self talk.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          Why do I talk to myself? What your self-talk means
+         </h4>
+         <p>
+          Jun 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person experiencing brain fog" height="150" src="../static/images/portrait-woman-desk-with-laptop-hands-closing-face.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          What is brain fog? Causes, effects and how to reverse it
+         </h4>
+         <p>
+          May 15, 2024
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="section">
+      <h3>
+       Personal Growth
+       <a href="#">
+        View All
+       </a>
+      </h3>
+      <div class="cards">
+       <div class="card">
+        <img alt="Person stacking stones" height="150" src="../static/images/life.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to get your life together: 10 tips to help you thrive
+         </h4>
+         <p>
+          Sep 10, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person feeling insecure" height="150" src="../static/images/insecure.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to not be insecure: 10 mindful tips for overcoming insecurity
+         </h4>
+         <p>
+          Jun 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person believing in themselves" height="150" src="../static/images/high confi.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to believe in yourself: 12 ways to overcome self-doubt
+         </h4>
+         <p>
+          May 15, 2024
+         </p>
+        </div>
+       </div>
+       <div class="card">
+        <img alt="Person following their dreams" height="150" src="../static/images/goal follow.jpg" width="200"/>
+        <div class="text">
+         <h4>
+          How to follow your dreams (and what to do if it doesn't work)
+         </h4>
+         <p>
+          Aug 15, 2024
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+
+
+  
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Footer Design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  </head>
+  <body>
+  
+    <footer class="footer">
+         <div class="container">
+             <div class="row">
+                 <div class="footer-col">
+                     <h4>company</h4>
+                     <ul>
+                         <li><a href="#">about us</a></li>
+                         <li><a href="#">our services</a></li>
+                         <li><a href="#">privacy policy</a></li>
+                         <li><a href="#">affiliate program</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-col">
+                     <h4>get help</h4>
+                     <ul>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">shipping</a></li>
+                         <li><a href="#">returns</a></li>
+                         <li><a href="#">order status</a></li>
+                         <li><a href="#">payment options</a></li>
+                     </ul>
+                 </div>
+               
+                 <div class="footer-col">
+                     <h4>follow us</h4>
+                     <div class="social-links">
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </footer>
+  
+  </body>
+  </html>
+  
+  
+  <!-- Jquery needed -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  
+  <!-- Function used to shrink nav bar removing paddings and adding black background -->
+  <script>
+      $(window).scroll(function() {
+          if ($(document).scrollTop() > 50) {
+              $('.nav').addClass('affix');
+              console.log("OK");
+          } else {
+              $('.nav').removeClass('affix');
+          }
+      });
+  </script>
+
+
+      <script src="{{ url_for('static', filename='scripts.js') }}">
+
+      </script>
+
+</body>
+</html>
+

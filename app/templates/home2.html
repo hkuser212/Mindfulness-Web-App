@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulPath</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+</head>
+<style>
+    .faq-section h2 {
+  text-align: center;
+  color: #2e4a7b;
+  margin-bottom: 20px;
+  font-size:xx-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.faq-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: rgb(214, 233, 237);
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  padding: 15px;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  color: #2e4a7b;
+  border-bottom: 1px solid #ddd;
+}
+
+.faq-question span {
+  float: right;
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f1f1f1;
+}
+
+.faq-question:focus, .faq-question:hover {
+  background-color: #f1f1f1;
+}
+</style>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ url_for('routes.home')}}">EASEMIND</a>
+            </div>
+        
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="">Home</a></li>
+                    <li><a href="{{url_for('routes.about')}}">About</a></li>
+                    <li><a href="{{url_for('routes.blogs')}}">Blogs</a></li>
+                    {% if current_user.is_authenticated %}
+                    {% else %}
+                    <li><a href="{{url_for('routes.signup')}}">Sign Up</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('routes.tryforfree')}}">Try For Free</a></li>
+                    <li><a href="{{ url_for('routes.dashboard')}}">Dashboard</a></li>
+
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Take a deep breath and Calm your mind</h1>
+            <p>Mental health is hard. Getting support doesn't need to be. Our app puts the tools to feel better in your back pocket, with personalized content to manage stress and anxiety, get better sleep, and feel more present in your life. Relax your mind, and wake up as the person you want to be</p>      
+            <button id="cta-button" onclick="window.location.href='{{ url_for('routes.signin') }}';">Start Your Journey</button>
+        </div>
+    </section>
+
+
+
+    <section id="features" class="features">
+        <h2>We are here to help you feel better</h2>
+        <div class="feature-item">
+            <img src="../static/icons/pill (1).png" alt="Feature 1">
+            <h5>Stress Relief</h5>
+            <p class="p">Get in the moment relief for stress and anxiety so you can get back to living</p>
+            <button id="cta-button1" onclick="">Learn More</a>
+        </div>
+        <div class="feature-item">
+            <img src="../static/icons/sleeping.png" alt="Feature 2">
+            <h4>Sleep More</h4>
+            <p >Fall asleep and stay asleep naturally and peacefully
+            </p>
+            <button id="cta-button1">Learn More</a>
+        </div>
+        <div class="feature-item">
+            <img src="../static/icons/leaf.png" alt="Feature 3">
+            <h5>Live Mindfully</h5>
+            <p >Navigate life's ups and downs with resilience,confidence and guided support</p>
+            <button id="cta-button1">Learn More</a>
+        </div>
+    </section>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog Slider</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles3.css') }}">
+    </head>
+    <body>
+        <section class="blog-slider">
+            <h2>Check out our blog for more meditation, sleep, stress, and mental health resources.</h2>
+                <div class="slider-container">
+                <!-- Left Arrow -->
+                <button class="slider-arrow left-arrow" onclick="slideLeft()">&#8249;</button>
+    
+                <!-- Slider Wrapper -->
+                <div class="slider-wrapper" id="slider">
+                    <div class="blog-card">
+                        <img src="../static/images/life.jpg" alt="Blog 1">
+                        <div class="blog-info">
+                            <p class="category">Personal Growth</p>
+                            <h3>11 Signs of Emotional Maturity</h3>
+                            <p>How to become more mature</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/person-suffering-from-anxiety.jpg" alt="Blog 2">
+                        <div class="blog-info">
+                            <p class="category">Stress & Anxiety</p>
+                            <h3>What is Anxiety?</h3>
+                            <p>How to deal with stress on game day</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/exhausted-tired-executive-manager-suffering-from-sleepiness.jpg" alt="Blog 3">
+                        <div class="blog-info">
+                            <p class="category">Mental Health</p>
+                            <h3>Dealing with Emotional Burnout</h3>
+                            <p>Ways to cope and heal</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/rendering-person-with-different-personalities.jpg" alt="Blog 3">
+                        <div class="blog-info">
+                            <p class="category">Mental Health</p>
+                            <h3>7 signs you might have an inferiority Complex</h3>
+                            <p>Ways to cope and heal</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/self talk.jpg" alt="Blog 3">
+                        <div class="blog-info">
+                            <p class="category">Personal Growth</p>
+                            <h3>How to learn something new everyday</h3>
+                            <p>7 tips for a curious mind</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/stop-my-head-blow-out-tired-brunette-young-caucasian-woman-keeps-hands-temples-closes-eyes.jpg" alt="Blog 3">
+                        <div class="blog-info">
+                            <p class="category">Mental Health</p>
+                            <h3>Feeling Sorry for yourself ?</h3>
+                            <p>Here's how to stop self pity</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="../static/images/person-feeling-anxiety-induced-by-documents-work.jpg" alt="Blog 3">
+                        <div class="blog-info">
+                            <p class="category">Mental Health</p>
+                            <h3>Can Depression make you tired ?</h3>
+                            <p>Plus,How to cope it </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more blog cards as needed -->
+                </div>
+    
+                <!-- Right Arrow -->
+                <button class="slider-arrow right-arrow" onclick="slideRight()">&#8250;</button>
+            </div>
+    
+            <div class="see-all">
+                <a href="{{ url_for('routes.blogs')}}">See all blogs</a>
+            </div>
+        </section>
+    
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+    </html>
+    
+  
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FAQ Section</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    </head>
+    <body>
+    
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+              <div class="faq-item">
+                <button class="faq-question">What is EASEMIND ? <span>&#9662;</span></button>
+                <div class="faq-answer">
+                  <p>EASEMIND is a platform that helps you to find the right mental health professional for you.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                  <button class="faq-question">What is stress?
+                      <span>&#9662;</span></button>
+                  <div class="faq-answer">
+                    <p>Stress is a very common and human experience. It can be defined as a natural response to a perceived threat, demand, or challenge. It is a physiological and psychological reaction that prepares the body and mind to cope with the situation at hand. While stress is a normal part of life, excessive or chronic stress can be overwhelming and impair your overall well-being.
+      
+                      </p>
+                  </div>
+                </div>
+              <div class="faq-item">
+                <button class="faq-question">How do I get rid of stress? <span>&#9662;</span></button>
+                <div class="faq-answer">
+                  <p>Stress can be managed with techniques like mindfulness, deep breathing, and regular exercise.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">How does stress affect the body? <span>&#9662;</span></button>
+                <div class="faq-answer">
+                  <p>Stress can lead to physical symptoms such as headaches, muscle tension, and high blood pressure.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">What causes social anxiety? <span>&#9662;</span></button>
+                <div class="faq-answer">
+                  <p>Social anxiety is often caused by a combination of genetic and environmental factors.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                  <button class="faq-question">What's the best meditation for anxiety?
+                      <span>&#9662;</span></button>
+                  <div class="faq-answer">
+                    <p>There are a variety of factors that go into answering this question. A good starting point is to reflect on what might be causing your anxiety. If your symptoms are physical, carving out 7 minutes of mindful movement could help ease any tightness or jitters living in the body. If your symptoms are more emotional, sitting in stillness as a soundscape plays can help soothe the mind. Reminding yourself to remain gentle and compassionate can also help when your mind or body tries to initially resist these practices, especially if you're just starting out.</p>
+                  </div>
+                </div>
+              <!-- Add more FAQ items as needed -->
+            </div>
+          </section>
+
+    </body>
+    </html>
+    
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Footer Design</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </head>
+    <body>
+    
+      <footer class="footer">
+           <div class="container">
+               <div class="row">
+                   <div class="footer-col">
+                       <h4>company</h4>
+                       <ul>
+                           <li><a href="#">about us</a></li>
+                           <li><a href="#">our services</a></li>
+                           <li><a href="#">privacy policy</a></li>
+                           <li><a href="#">affiliate program</a></li>
+                       </ul>
+                   </div>
+                   <div class="footer-col">
+                       <h4>get help</h4>
+                       <ul>
+                           <li><a href="#">FAQ</a></li>
+                           <li><a href="#">returns</a></li>
+                           <li><a href="#">order status</a></li>
+                           <li><a href="#">payment options</a></li>
+                       </ul>
+                   </div>
+                  
+                   <div class="footer-col">
+                       <h4>follow us</h4>
+                       <div class="social-links">
+                           <a href="#"><i class="fab fa-facebook-f"></i></a>
+                           <a href="#"><i class="fab fa-twitter"></i></a>
+                           <a href="#"><i class="fab fa-instagram"></i></a>
+                           <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                         
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+      </footer>
+    
+    </body>
+    </html>
+    
+    
+    <!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    
+    <!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+    </script>
+
+
+        <script src="{{ url_for('static', filename='scripts.js') }}">
+
+        </script>
+
+</body>
+</html>
+

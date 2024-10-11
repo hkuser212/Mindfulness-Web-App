@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    body{
+        background-image: url(../static/images/3d-rendering-buddha-statue-suset.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+<body>
+    <!-- Side Navbar -->
+    <div class="sidebar">
+        <a href="{{ url_for('routes.home')}}"><h2>EASEMIND</h2></a>
+        <ul>
+            <li><a href="{{ url_for('routes.home')}}"><img src="../static/icons/home_57dp_FFFFFF.png" height="40" width="40" alt=""></i> Home</a></li>
+            <li><a href="{{ url_for('routes.meditate')}}"><img src="../static/icons/self_improvement_68dp_FFFFFF.png" height="45" width="45" alt=""> Meditate</a></li>
+            <li><a href="#"><img src="../static/icons/bedtime_75dp_FFFFFF.png" height="45" width="45" alt=""> </i> Sleep</a></li>
+            <li><a href="#"><i class="fas fa-music"></i> Music</a></li>
+            <li><a href="#"><i class="fas fa-heartbeat"></i> For Work</a></li>
+            <li><a href="#"><i class="fas fa-heartbeat"></i> Movement</a></li>
+            <li><a href="{{ url_for('routes.signout')}}"><i class="fas fa-cog"></i> Sign Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Track your mindfulness progress and Explore personalized recommendations.</p>
+        </header>
+
+        <!-- Dashboard Content -->
+        <section class="content-section overview">
+            <div class="overview-container">
+                <h2>Overview</h2>
+                <p>This is your mindfulness activity overview.</p>
+            </div>
+
+            <!-- Chart for Activity Logging -->
+            <div class="chart-container">
+                <canvas id="activityChart"></canvas>
+            </div>
+
+            <!-- Chart for Mood Tracking -->
+            <div class="chart-container">
+                <canvas id="moodChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Machine Learning Recommendation Section -->
+        <section class="content-section ml-recommendation">
+            <div class="recommendation-container">
+                <h3>Personalized Recommendations</h3>
+                <ul id="recommendations">
+                    {% if recommendations %}
+                        <li>{{ recommendations }}</li>
+                    {% else %}
+                        <li>No recommendations available.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+        
+    <!-- Footer -->
+    <footer class="footer1">
+        <p>&copy; 2024 EaseMind. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Chart.js and ML Recommendations -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

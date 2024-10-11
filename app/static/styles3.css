@@ -1,0 +1,113 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #eff5f3;
+    color: #333;
+}
+
+.blog-slider {
+    padding: 40px;
+    text-align: center;
+}
+
+.blog-slider h2 {
+    margin-bottom: 20px;
+    color: #35496a;
+    font-size:xx-large;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.slider-wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 80%;
+    scroll-behavior: smooth;
+}
+
+.blog-card {
+    flex: 0 0 30%;
+    margin: 0 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.blog-info {
+    padding: 15px;
+}
+
+.blog-info .category {
+    font-size: 14px;
+    color: #517bc0;
+    margin-bottom: 5px;
+}
+
+.blog-info h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.blog-info p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Arrow Styles */
+.slider-arrow {
+    background-color: #35496a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+/* Hover Effects */
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.see-all {
+    margin-top: 20px;
+}
+
+.see-all a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #517bc0;
+    font-size: 16px;
+}
+
+.see-all a:hover {
+    text-decoration: underline;
+}

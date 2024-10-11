@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    height: 100%;
+}
+
+.quick-easy-section {
+    background-color: #0859a0;
+    padding: 20px;
+    margin-left: 250px;
+    font-size: larger;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.audio-cards-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.audio-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    min-width: 200px;
+    transition: box-shadow 0.3s ease;
+}
+
+.audio-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.audio-card img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.audio-card h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.audio-card p {
+    margin: 0 0 15px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.play-pause-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.play-pause-btn:hover {
+    background-color: #45a049;
+}
+
+</style>
+<body>
+    <!-- Side Navbar -->
+    <div class="sidebar">
+        <a href="{{ url_for('routes.home')}}"><h2>EASEMIND</h2></a>
+        <ul>
+            <li><a href="{{ url_for('routes.home')}}"><img src="../static/icons/home_57dp_FFFFFF.png" height="40" width="40" alt=""></i> Home</a></li>
+            <li><a href="#"><img src="../static/icons/self_improvement_68dp_FFFFFF.png" height="45" width="45" alt=""> Meditate</a></li>
+            <li><a href="#"><img src="../static/icons/bedtime_75dp_FFFFFF.png" height="45" width="45" alt=""> </i> Sleep</a></li>
+            <li><a href="#"><i class="fas fa-music"></i> Music</a></li>
+            <li><a href="#"><i class="fas fa-heartbeat"></i> For Work</a></li>
+            <li><a href="#"><i class="fas fa-heartbeat"></i> Movement</a></li>
+            <li><a href="{{ url_for('routes.signout')}}"><i class="fas fa-cog"></i> Sign Out</a></li>
+        </ul>
+    </div>
+
+    <body>
+        <body>
+            <div class="quick-easy-section">
+                <h2>Quick & Easy</h2>
+                <div class="audio-cards-container">
+                    <div class="audio-card" data-audio="{{url_for('static', filename='audios/Focus Your Mind  by Jay Shetty.mp3')}}">
+                        <img src="/api/placeholder/300/200" alt="7 Days of Growth">
+                        <h3>7 Days of Growth</h3>
+                        <p>Wisdom • Jay Shetty</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <!-- Add more audio cards as needed -->
+                </div>
+            </div>
+            <div class="quick-easy-section">
+                <h2>Meditation</h2>
+                <div class="audio-cards-container">
+                    <div class="audio-card" data-audio="/path/to/audio1.mp3">
+                        <img src="data:image/jpeg;base64,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" alt="7 Days of Growth">
+                        <h3>7 Days of Growth</h3>
+                        <p>Wisdom • Jay Shetty</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Stress And Burnout Support</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Deep Mediatation</h3>
+                        <p>Close your</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <!-- Add more audio cards as needed -->
+                </div>
+            </div>
+            <div class="quick-easy-section">
+                <h2>For Beginners</h2>
+                <div class="audio-cards-container">
+                    <div class="audio-card" data-audio="/path/to/audio1.mp3">
+                        <img src="/api/placeholder/300/200" alt="7 Days of Growth">
+                        <h3>7 Days of Growth</h3>
+                        <p>Wisdom • Jay Shetty</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <div class="audio-card" data-audio="/path/to/audio2.mp3">
+                        <img src="/api/placeholder/300/200" alt="Mindfulness Tools">
+                        <h3>Mindfulness Tools</h3>
+                        <p>Meditation • Dr. Vivek Murthy</p>
+                        <button class="play-pause-btn">Play</button>
+                    </div>
+                    <!-- Add more audio cards as needed -->
+                </div>
+            </div>
+        </body>
+        </html>
+
+    <script src="{{ url_for('static', filename='temp.js') }}">
+  
+    </script>
+
+</body>
+        </html>
