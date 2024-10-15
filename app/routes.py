@@ -6,7 +6,7 @@ from datetime import datetime
 routes = Blueprint('routes', __name__)
 import joblib
 import numpy as np
-model = joblib.load('model/mindfulness_model.pkl')
+import pandas as pd
 @routes.route('/')
 def home():
     return render_template('home2.html')
@@ -15,37 +15,15 @@ def home():
 def about():
     return render_template('About.html')
 
-@routes.route('/dashboard', methods=['GET'], endpoint='dashboard')
+@routes.route('/dashboard')
 @login_required
 def dashboard():
-    last_mood = Mood.query.filter_by(user_id=current_user.id).order_by(Mood.date.desc()).first()
-    last_activity = UserActivity.query.filter_by(user_id=current_user.id).order_by(UserActivity.date_created.desc()).first()
-    
-    # Check if either mood or activity data is missing
-    if not last_mood or not last_activity:
-        flash('No mood or activity data available for recommendations.', 'warning')
-        return redirect(url_for('routes.dashboard'))  # Redirect to dashboard if no data
-
-    # Prepare the features for prediction
-    mood_encoded = encode_mood(last_mood.mood)  # Function to encode mood
-    activity_encoded = encode_activity(last_activity.activities)  # Function to encode activities
-    duration = last_activity.duration or 0  # Default to 0 if duration is None
-    effectiveness = effectiveness_map(last_activity.effectiveness) or 0  # Default to 0 if effectiveness is None
-    input_features=[0]*75
-    input_features[0] = mood_encoded  # Mood
-    input_features[1] = activity_encoded  # Activity
-    input_features[2] = duration  # Duration
-    input_features[3] = effectiveness 
-
-# Create the input array in the format your model expects
-    input_features = [input_features]  # Wrap in a list to make it a 2D array
-
-# Make a prediction
-    recommendations = model.predict(input_features)  # Pass the 2D array to predict
-    recommendations_text = process_recommendations(recommendations)  # Process the output to a readable format
-
-# Render the dashboard with mood, activity, and recommendations
-    return render_template('dashboard.html', recommendations=recommendations_text)
+    return render_template('dashboard.html')
+       
+@routes.route('/recommendation')
+def recommendation():
+    recommendation = request.args.get('recommendation')  # Get the recommendation from URL args
+    return render_template('recommendation.html', recommendation=recommendation)
     
 
 def encode_mood(mood):
@@ -164,9 +142,41 @@ def activity():
 
         db.session.add(new_activity)
         db.session.commit()
-        flash('Your activity has been recorded!', 'success')
-        return redirect(url_for('routes.dashboard'))
 
+        try:
+            # Load the model
+            loaded_pipeline = joblib.load('model/mindfulness_model2.pkl')
+
+            # Prepare input data
+            input_data = pd.DataFrame({
+                'How do you feel right now?': [mood],
+                'What mindfulness activities do you prefer?': [activities],
+                'How effective do you find your preferred mindfulness activities?': [effectiveness],
+                'On average, how long do you spend on mindfulness activities per session?': [duration],
+                'After engaging in mindfulness activities, how much does your mood improve?': [mood]  # Adjust as needed
+            })
+            prediction = loaded_pipeline.predict(input_data)[0]
+
+            # Map mood predictions to specific activities
+            mood_to_activity = {
+                'Happy': 'Enjoy a nature walk or watch a funny movie.',
+                'Sad': 'Try Deep Breathing, meditating or journaling your thoughts.',
+                'Very happy': 'Practice deep breathing exercises or do yoga.',
+                'Very sad': 'Listen to soothing music or read a book.',
+                'neutral': 'Engage in physical exercise or talk to a friend.',
+                
+            }
+
+            # Get recommendation based on the mapped activities
+            recommendation = mood_to_activity.get(prediction, "Engage in some mindfulness practice.")  # Default message if mood not found
+            
+            flash(f'Your activity has been recorded! Here is a recommendation based on your input: {recommendation}', 'success')
+            return redirect(url_for('routes.recommendation', recommendation=recommendation))
+
+        except Exception as e:
+            flash(f'An error occurred during prediction: {str(e)}', 'danger')
+            return redirect(url_for('routes.activity'))
+
+    # For GET request, render the activity form
     return render_template('activity.html')
-
 
