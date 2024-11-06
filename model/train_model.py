@@ -83,4 +83,33 @@ y_pred = model.predict(X_test)
 
 print(classification_report(y_test, y_pred))
 
-joblib.dump(model, 'model/mindfulness_model2.pkl')
+joblib.dump(model, 'model/mindfulness_model2.pkl')# Define hyperparameters for tuning
+param_grid = {
+    'classifier__n_estimators': [100, 200, 300],
+    'classifier__max_depth': [None, 5, 10],
+    'classifier__min_samples_split': [2, 5, 10],
+    'classifier__min_samples_leaf': [1, 5, 10]
+}
+
+# Perform grid search with cross-validation
+from sklearn.model_selection import GridSearchCV
+grid_search = GridSearchCV(model, param_grid, cv=5, scoring='f1_macro')
+grid_search.fit(X_train, y_train)
+
+# Get the best model and its parameters
+best_model = grid_search.best_estimator_
+best_params = grid_search.best_params_
+
+# Train the best model on the entire training set
+best_model.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = best_model.predict(X_test)
+
+# Evaluate the model
+print(classification_report(y_test, y_pred))
+print("Best Parameters:", best_params)
+print("Best Score:", grid_search.best_score_)
+
+# Save the best model
+joblib.dump(best_model, 'model/mindfulness_model2.pkl')

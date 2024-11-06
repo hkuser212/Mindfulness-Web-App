@@ -7,8 +7,6 @@ body {
     font-family: "Quicksand", sans-serif;
     font-size: xx-small;
 }
-/*-- Inspiration taken from abdo steif -->
-/* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
 
 /* Navbar section */
 
@@ -18,7 +16,6 @@ body {
     position: fixed;
     line-height: 65px;
     text-align: center;
-
 }
 
 .nav div.logo {
@@ -53,14 +50,13 @@ font-weight: 600;
     list-style: none;
     margin: 0;
     padding: 0;
+   
 }
 
 .nav div.main_list ul li {
-    width: auto;
-    height: 65px;
-    margin: 4px;
     margin-right: auto;
     padding-right: 4rem;
+    
 }
 
 .nav div.main_list ul li a {
@@ -70,6 +66,8 @@ font-weight: 600;
     font-size: 2.4rem;
     font-weight: 500;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+
 }
 
 .nav div.main_list ul li a:hover {
@@ -85,6 +83,11 @@ font-weight: 600;
     background-image: url("./images/blue.jpg");
     background-position: center top;
 	background-size:cover;
+}
+@media screen and (max-width: 768px) {
+    .home {
+        background-position: center 20%;
+    }
 }
 
 .navTrigger {
@@ -152,7 +155,6 @@ font-weight: 600;
 
 
 /* Animation */
-/* Inspiration taken from Dicson https://codemyui.com/simple-hamburger-menu-x-mark-animation/ */
 
 .navTrigger {
     cursor: pointer;
@@ -191,18 +193,18 @@ font-weight: 600;
 
 .navTrigger i:nth-child(3) {
     -webkit-animation: outBtm 0.8s backwards;
-    animation: outBtm 0.8s backwards;
+    animation: outBtm 0.9s backwards;
     -webkit-animation-direction: reverse;
     animation-direction: reverse;
 }
 
 .navTrigger.active i:nth-child(1) {
-    -webkit-animation: inT 0.8s forwards;
-    animation: inT 0.8s forwards;
+    -webkit-animation: inT 0.9s forwards;
+    animation: inT 0.9s forwards;
 }
 
 .navTrigger.active i:nth-child(2) {
-    -webkit-animation: inM 0.8s forwards;
+    -webkit-animation: inM 0.9s forwards;
     animation: inM 0.8s forwards;
 }
 
@@ -345,7 +347,7 @@ font-weight: 600;
 
 .affix {
     padding: 0;
-    background-color: #037cc7;
+    background-color: #246892;
 }
 
 
@@ -389,6 +391,7 @@ font-weight: 600;
    
 
 }
+
 h1{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size:55px;
@@ -791,8 +794,8 @@ ul{
     font-size: larger;
 }
 .overview-container h2, .recommendation-container h2 ,p{
-    font-size: x-large;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
 }
 
 .overview-container:hover, .recommendation-container:hover {

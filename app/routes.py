@@ -1,12 +1,14 @@
 from app import db, bcrypt
-from flask import Blueprint,render_template, url_for, flash, redirect, request
+from flask import Blueprint,render_template, url_for, flash, redirect, request,jsonify
 from app.models import User, Mood, UserActivity
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
-routes = Blueprint('routes', __name__)
 import joblib
 import numpy as np
 import pandas as pd
+from collections import Counter
+routes = Blueprint('routes', __name__)
+
 @routes.route('/')
 def home():
     return render_template('home2.html')
@@ -18,37 +20,30 @@ def about():
 @routes.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    recommendation = request.args.get('recommendation')
+
+    user_id = current_user.id
+    activties = UserActivity.query.filter_by(user_id=user_id).all()
+    moods = Mood.query.filter_by(user_id=user_id).all()
+
+    activity_data = {}
+    for activity in activties:
+        activity_name = activity.activities
+        duration = activity.duration
+        activity_data[activity_name] = activity_data.get(activity_name, 0) + duration
+
+    mood_counts = Counter(mood.mood for mood in moods)
+    mood_labels = list(mood_counts.keys())
+    mood_values = list(mood_counts.values())
+
+
+
+    return render_template('dashboard.html', recommendation=recommendation,activity_data=activity_data, mood_labels=mood_labels, mood_values=mood_values)
+
        
-@routes.route('/recommendation')
-def recommendation():
-    recommendation = request.args.get('recommendation')  # Get the recommendation from URL args
-    return render_template('recommendation.html', recommendation=recommendation)
-    
+#
 
-def encode_mood(mood):
-    mood_map = {'Happy': 0, 'Sad': 1, 'Stressed': 2, 'Angry': 3, 'Anxious': 4}
-    return mood_map[mood]
-def encode_activity(activity):
-    activity_map = {'Meditation': 0, 'Yoga': 1, 'Walking': 2, 'Breathing Exercises': 3, 'Reading': 4}
-    return activity_map[activity]
-def effectiveness_map(effectiveness):
-    effectiveness_map = {'Very Effective': 0, 'Somewhat Effective': 1, 'Not Effective': 2}
-    return effectiveness_map[effectiveness]
 
-def process_recommendations(recommendations):
-    if recommendations[0] == 0:
-        return "Meditation"
-    elif recommendations[0] == 1:
-        return "Yoga"
-    elif recommendations[0] == 2:
-        return "Walking"
-    elif recommendations[0] == 3:
-        return "Breathing Exercises"
-    elif recommendations[0] == 4:
-        return "Reading"
-    else:
-        return "Error"
 
 @routes.route('/blogs')
 def blogs():
@@ -94,7 +89,7 @@ def signin():
         # Check if the user exists and the password matches
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user, remember=True)
-            flash('You are now logged in', 'success')
+            
             return redirect(url_for('routes.mood'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
@@ -121,13 +116,6 @@ def mood():
         flash('Your mood has been recorded!', 'success')
         return redirect(url_for('routes.activity'))
     return render_template('mood.html')
-
-@routes.route("/tryforfree")
-def tryforfree():
-    return render_template('tryforfree.html')
-@routes.route("/meditate")
-def meditate():
-    return render_template('meditate.html')
 @routes.route("/activity", methods=['GET', 'POST'])
 @login_required
 def activity():
@@ -159,11 +147,11 @@ def activity():
 
             # Map mood predictions to specific activities
             mood_to_activity = {
-                'Happy': 'Enjoy a nature walk or watch a funny movie.',
+                'Happy': 'Please Explore our mindfulness contents.',
                 'Sad': 'Try Deep Breathing, meditating or journaling your thoughts.',
                 'Very happy': 'Practice deep breathing exercises or do yoga.',
                 'Very sad': 'Listen to soothing music or read a book.',
-                'neutral': 'Engage in physical exercise or talk to a friend.',
+                'neutral': 'Engage in physical exercise or try our mindfulness contents.',
                 
             }
 
@@ -171,7 +159,7 @@ def activity():
             recommendation = mood_to_activity.get(prediction, "Engage in some mindfulness practice.")  # Default message if mood not found
             
             flash(f'Your activity has been recorded! Here is a recommendation based on your input: {recommendation}', 'success')
-            return redirect(url_for('routes.recommendation', recommendation=recommendation))
+            return redirect(url_for('routes.dashboard', recommendation=recommendation))
 
         except Exception as e:
             flash(f'An error occurred during prediction: {str(e)}', 'danger')
@@ -179,4 +167,13 @@ def activity():
 
     # For GET request, render the activity form
     return render_template('activity.html')
+
+
+@routes.route("/tryforfree")
+def tryforfree():
+    return render_template('tryforfree.html')
+@routes.route("/meditate")
+def meditate():
+    return render_template('meditate.html')
+
 

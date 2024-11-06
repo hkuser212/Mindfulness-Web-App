@@ -73,6 +73,7 @@
                     <li><a href="{{url_for('routes.signup')}}">Sign Up</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('routes.tryforfree')}}">Try For Free</a></li>
+                  
                     <li><a href="{{ url_for('routes.dashboard')}}">Dashboard</a></li>
 
                 </ul>
@@ -100,14 +101,14 @@
             <img src="../static/icons/pill (1).png" alt="Feature 1">
             <h5>Stress Relief</h5>
             <p class="p">Get in the moment relief for stress and anxiety so you can get back to living</p>
-            <button id="cta-button1" onclick="">Learn More</a>
+            <button id="cta-button1" onclick="window.location.href='{{ url_for('routes.tryforfree') }}';">Learn More</a>
         </div>
         <div class="feature-item">
             <img src="../static/icons/sleeping.png" alt="Feature 2">
             <h4>Sleep More</h4>
             <p >Fall asleep and stay asleep naturally and peacefully
             </p>
-            <button id="cta-button1">Learn More</a>
+            <button id="cta-button1" >Learn More</a>
         </div>
         <div class="feature-item">
             <img src="../static/icons/leaf.png" alt="Feature 3">
