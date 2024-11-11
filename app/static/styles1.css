@@ -391,6 +391,22 @@ font-weight: 600;
    
 
 }
+@media screen and (max-width: 768px) {
+    .hero-content {
+        padding: 10px;
+    }
+   .hero-content h1{
+        font-size: 40px;
+    }
+    .feature-item{
+        padding: 10px;
+        
+    }
+    .feature-item h5{
+        font-size: 20px;
+    }
+
+}
 
 h1{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

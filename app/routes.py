@@ -113,8 +113,7 @@ def mood():
 
         db.session.add(new_mood)
         db.session.commit()
-        flash('Your mood has been recorded!', 'success')
-        return redirect(url_for('routes.activity'))
+        return redirect(url_for('routes.activity',message='Your mood has been recorded!'))
     return render_template('mood.html')
 @routes.route("/activity", methods=['GET', 'POST'])
 @login_required

@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <title>Mood</title>
+<!-- css styling for mood form -->
     <style>
          body {
       font-family: Arial, sans-serif;
@@ -79,7 +82,7 @@
     }
     </style>
 </head>
-    
+   <!-- html for mood form --> 
     <body>
         <div class="form-container">
           <h2>How are you feeling today?</h2>
@@ -93,5 +96,24 @@
             <button class="option-button" type="submit" name="mood" value="Anxious">Anxious</button>
           </form>
         </div>
+      
+        <script>
+          function showNotification(type, message) {
+    Swal.fire({
+        icon: type,
+        title: message,
+        timer: 3000,
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+    });
+}
+</script>
+{% if message %}
+<script>
+    showNotification('success', '{{ message }}');
+</script>
+{% endif %}
+
       </body>
       </html>
