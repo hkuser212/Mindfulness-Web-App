@@ -12,6 +12,9 @@ login_manager.login_view = 'routes.signup'
 login_manager.login_message_category = 'info'
 DB_NAME = "site.db"
 
+
+ 
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hadewjfc3w212'  # Make sure to use a secure random key in production

@@ -1,3 +1,6 @@
+
+
+// audio fro meditae section
 document.addEventListener('DOMContentLoaded', function() {
     const audioCards = document.querySelectorAll('.audio-card');
     let currentlyPlaying = null;
