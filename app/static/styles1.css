@@ -953,7 +953,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     h2 {
         font-size: 111rem;
     }

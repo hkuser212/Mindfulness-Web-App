@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     body{
         background-image: url(../static/images/3d-rendering-buddha-statue-suset.jpg);
         background-size: cover;
@@ -19,6 +20,69 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
+    .content-section.ml-recommendation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f3f8fb;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.recommendation-container {
+    text-align: center;
+    padding: 2rem;
+    width: 100%; /* Full width */
+    max-width: 100%; /* Override max width */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.recommendation-container h3 {
+    font-size:x-large;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+}
+
+#recommendations {
+    list-style: none;
+    padding: 0;
+}
+
+#recommendations li {
+    font-size:x-large;
+    color: #555;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #eef5fa;
+    border-radius: 8px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size:large;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "Roboto",sans-serif;
+}
+.overview-container h2,p{
+    font-size:x-large;
+    font-family: "Roboto",sans-serif;
+}
+.footer1{
+    z-index: 1;
+    margin-top: 30px;
+    width: 100%;
+}
 </style>
 <body>
     <!-- Side Navbar -->
@@ -63,7 +127,7 @@
         <!-- Machine Learning Recommendation Section -->
         <section class="content-section ml-recommendation">
             <div class="recommendation-container">
-                <h3>Your Personalized Recommendation</h3>
+                <h3>Based on your Mood and Activity,Your Personalized Recommendation</h3>
                 <ul id="recommendations">
                     {% if recommendation %}
                         <li>{{ recommendation }}</li>
@@ -137,7 +201,17 @@
         }
     });
 
-      
+    document.addEventListener('DOMContentLoaded', function () {
+    const recommendations = document.querySelector('#recommendations');
+
+    // Add fade-in effect
+    recommendations.style.opacity = 0;
+    setTimeout(() => {
+        recommendations.style.transition = 'opacity 1s';
+        recommendations.style.opacity = 1;
+    }, 100);
+});
+
       
       </script>
       
