@@ -1,7 +1,7 @@
 # 🌟 Mindfulness Web App 🌟
 
 ## 🚀 Overview
-The **Mindfulness Web App** is designed to help users enhance their mental wellness through mood tracking, activity logging, and personalized recommendations.
+The **Mindfulness Web App** is designed to help users enhance their mental wellness through mood logging, activity logging, and personalized recommendations. The web app uses machine learning model to give personalized recommendations based on the user's mood input and activity input.
 
 ---
 
@@ -15,7 +15,7 @@ The **Mindfulness Web App** is designed to help users enhance their mental welln
 
 ## 🛠️ Technologies Used
 - **Frontend:** HTML5, CSS3, JavaScript
-- **Backend:** Flask, Python
+- **Backend:** Flask, Python,Schikit-learn.
 - **Database:** SQLite
 - **Visualization:** Chart.js
 
@@ -25,3 +25,18 @@ The **Mindfulness Web App** is designed to help users enhance their mental welln
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/mindfulness-tracker.git
+
+2. Navigate to the Directory:
+   ```bash
+   cd mindfulness-tracker
+
+
+3. Install Dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+
+4. Run the Server:
+   ```bash
+   python run.py
+
