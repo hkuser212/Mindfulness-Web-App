@@ -146,13 +146,14 @@ def activity():
 
             # Map mood predictions to specific activities
             mood_to_activity = {
-                'Happy': 'Please Explore our mindfulness contents.',
-                'Sad': 'Try Deep Breathing, meditating or journaling your thoughts.',
-                'Very happy': 'Practice deep breathing exercises or do yoga.',
-                'Very sad': 'Listen to soothing music or read a book.',
-                'neutral': 'Engage in physical exercise or try our mindfulness contents.',
-                
-            }
+    'Happy': 'That’s wonderful to hear! Keep the positivity flowing by exploring our mindfulness content or doing something you love.',
+    'Sad': 'I’m sorry you’re feeling this way. How about trying a calming deep breathing exercise, meditating, or journaling your thoughts to feel better?',
+    'Very happy': 'Amazing! Why not celebrate your good mood with some yoga or a relaxing deep breathing session to enhance your energy even more?',
+    'Very sad': 'It’s okay to feel this way sometimes. Try listening to soothing music, reading an inspiring book, or taking some time for self-care.',
+    'Neutral': 'Balance is key. Engage in some physical activity or explore our mindfulness content to add a spark to your day.'
+}
+
+
 
             # Get recommendation based on the mapped activities
             recommendation = mood_to_activity.get(prediction, "Engage in some mindfulness practice.")  # Default message if mood not found
