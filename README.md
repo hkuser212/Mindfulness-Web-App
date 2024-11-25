@@ -36,7 +36,19 @@ The **Mindfulness Web App** is designed to help users enhance their mental welln
    pip install -r requirements.txt
 
 
+
+
 4. Run the Server:
    ```bash
    python run.py
+
+
+
+Contribution to the Project
+
+github.com/Akkulv28
+
+github.com/MRwrong7
+
+
 
