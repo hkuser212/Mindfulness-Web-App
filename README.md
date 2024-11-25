@@ -24,12 +24,11 @@ The **Mindfulness Web App** is designed to help users enhance their mental welln
 ## 💻 How to Run the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mindfulness-tracker.git
+   git clone https://github.com/yourusername/Mindfulness-Web-App.git
 
 2. Navigate to the Directory:
    ```bash
-   cd mindfulness-tracker
-
+   cd Mindulness-Web-App
 
 3. Install Dependencies:
    ```bash
